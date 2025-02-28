@@ -127,3 +127,6 @@ fabric.properties
 # data directory
 data/
 docs/
+
+#vscode
+.vscode/
