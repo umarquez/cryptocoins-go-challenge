@@ -52,3 +52,17 @@
     - whichever is available and free
 - obtain the values of the cryptocurrencies concurrently and deposit the values in their respective model
 - use best practices and known conventions
+
+## Installation
+
+To install the dependencies, run:
+```sh
+make generate
+```
+
+## Usage
+
+To start the application, run:
+```sh
+make run
+```
