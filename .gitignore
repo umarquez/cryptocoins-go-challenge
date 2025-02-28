@@ -124,3 +124,6 @@ fabric.properties
 
 # env file
 
+# data directory
+data/
+docs/

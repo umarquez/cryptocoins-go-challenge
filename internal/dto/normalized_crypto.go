@@ -14,11 +14,14 @@ type NormalizedCrypto struct {
 	Model     domain.Crypto `json:"model"`
 }
 
-func NormalizeCrypto(crypto domain.Crypto) NormalizedCrypto {
-	id := domain.IdByCryptoTable[crypto.TickerSymbol]
+func NormalizeCrypto(crypto domain.Crypto) (NormalizedCrypto, error) {
+	id, ok := domain.CryptoIdEnum[domain.CryptoCurrency(crypto.TickerSymbol)]
+	if !ok {
+		return NormalizedCrypto{}, domain.ErrCryptoIdNotFound
+	}
 	return NormalizedCrypto{
 		Id:        id,
 		Component: spew.Sprintf("crypto_%v", strings.ToLower(string(crypto.TickerSymbol))),
 		Model:     crypto,
-	}
+	}, nil
 }

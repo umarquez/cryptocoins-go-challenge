@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-var CryptoByIdTable map[int]string
+/*var CryptoByIdTable map[int]string
 var IdByCryptoTable map[string]int
 
 func init() {
@@ -12,7 +12,7 @@ func init() {
 		if CryptoByIdTable == nil {
 			CryptoByIdTable = make(map[int]string)
 		}
-		
+
 		if IdByCryptoTable == nil {
 			IdByCryptoTable = make(map[string]int)
 		}
@@ -21,7 +21,7 @@ func init() {
 	}
 
 	println("IdByCryptoTable: ", IdByCryptoTable)
-}
+}*/
 
 type Currency string
 
@@ -33,6 +33,18 @@ type CryptoCurrency string
 const BTC CryptoCurrency = "BTC"
 const ETH CryptoCurrency = "ETH"
 const XRP CryptoCurrency = "XRP"
+
+var CryptoByIdEnum = map[int]CryptoCurrency{
+	0: BTC,
+	1: ETH,
+	2: XRP,
+}
+
+var CryptoIdEnum = map[CryptoCurrency]int{
+	BTC: 0,
+	ETH: 1,
+	XRP: 2,
+}
 
 var Currencies = []Currency{MXN, USD}
 var Cryptos = []CryptoCurrency{BTC, ETH, XRP}

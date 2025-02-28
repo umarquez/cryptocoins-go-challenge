@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 	"strings"
@@ -10,9 +11,9 @@ import (
 	"github.com/umarquez/cryptocoins-go-challenge/sdk/bitso_client"
 )
 
-// CryptoService represents the service for the crypto domain.
-type CryptoService interface {
-	GetCryptoValue(crypto domain.CryptoCurrency, currency domain.Currency) (string, error)
+// Crypto represents the service for the crypto domain.
+type Crypto interface {
+	GetValue(crypto domain.CryptoCurrency, currency domain.Currency) (string, error)
 }
 
 type cacheItem struct {
@@ -27,7 +28,7 @@ type cryptoService struct {
 var cryptoServiceInstance *cryptoService
 
 // GetCryptoService returns a single instance of the crypto service.
-func GetCryptoService() CryptoService {
+func GetCryptoService() Crypto {
 	if cryptoServiceInstance == nil {
 		cryptoServiceInstance = &cryptoService{
 			cache: make(map[string]cacheItem),
@@ -37,16 +38,10 @@ func GetCryptoService() CryptoService {
 	return cryptoServiceInstance
 }
 
-func (s *cryptoService) GetCryptoValue(crypto domain.CryptoCurrency, currency domain.Currency) (string, error) {
+func (s *cryptoService) GetValue(crypto domain.CryptoCurrency, currency domain.Currency) (string, error) {
 	// Simulate a delay to simulate the time it takes to fetch the data.
 	delay := time.Duration(rand.Intn(4500)+500) * time.Millisecond // from 0.5 to 5 seconds
 	time.Sleep(delay)
-
-	// Check if the value is in the cache.
-	cacheKey := fmt.Sprintf("%s_%s", crypto, currency)
-	if item, ok := s.cache[cacheKey]; ok && item.expiration.After(time.Now()) {
-		return item.value, nil
-	}
 
 	// Fetch the value from the API.
 	c := bitso_client.NewClient(false)
@@ -59,14 +54,8 @@ func (s *cryptoService) GetCryptoValue(crypto domain.CryptoCurrency, currency do
 			continue
 		}
 
-		// Store the value in the cache.
-		s.cache[cacheKey] = cacheItem{
-			value:      ticker.Payload.Last,
-			expiration: time.Now().Add(time.Minute),
-		}
-
 		return ticker.Payload.Last, nil
 	}
 
-	return "", fmt.Errorf("failed to fetch crypto_service value after 3 retries")
+	return "", errors.New("failed to fetch %v value after 3 retries")
 }
