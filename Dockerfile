@@ -17,7 +17,7 @@ WORKDIR /app
 COPY --from=builder ./app ./app
 
 # list the directory tree
-RUN ls -lr ./app/
+RUN ls -lr ./app/bin/
 
 # Ensure the binary is executable
 RUN chmod +x ./app/bin/app
