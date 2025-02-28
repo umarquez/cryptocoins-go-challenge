@@ -9,18 +9,15 @@ RUN go mod download
 COPY . .
 RUN make build
 
-# list the directory tree
-RUN ls -lr ./bin
-
 # Create a minimal final image using Alpine
 FROM alpine:latest
 WORKDIR /app
 
 # Copy the binary from the builder stage
-COPY --from=builder /app/bin/app ./bin/app
+COPY --from=builder /app/bin/* ./bin/
 
 # list the directory tree
-RUN ls -lr ./bin
+RUN ls -lr ./
 
 # Ensure the binary is executable
 RUN chmod +x ./bin/app
