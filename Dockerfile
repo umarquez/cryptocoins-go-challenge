@@ -25,4 +25,4 @@ RUN cd bin/
 RUN pwd
 
 # Run the application
-CMD ["app/bin/app"]
+CMD ["bin/app"]
