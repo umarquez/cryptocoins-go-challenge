@@ -16,11 +16,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build -t myapp .
-
-      - name: Run Docker container
-        run: docker run -d -p 8080:8080 --name myapp_container myapp
+      - name: Docker compose up
+        run: docker compose up -d
 
       - name: Wait for the container to be ready
         run: sleep 10
