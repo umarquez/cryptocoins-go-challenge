@@ -21,8 +21,5 @@ RUN chmod +x ./app/bin/app
 
 # list the bin directory
 RUN ls -lr ./bin/
-RUN cd ./bin/
-RUN pwd
 
-# Run the application
-CMD ["./bin/app"]
+entrypoint ["./app/bin/app"]
