@@ -15,5 +15,5 @@ WORKDIR /app
 #COPY --from=builder /app/bin/app .
 
 # Ensure the binary is executable
-RUN sudo chmod +x ./bin/app
+RUN chmod +x ./bin/app
 ENTRYPOINT ["./bin/app"]
