@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   cryptocoins:
     container_name: cryptocoins_app
