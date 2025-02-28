@@ -9,6 +9,9 @@ RUN go mod download
 COPY . .
 RUN make build
 
+# list the directory tree
+RUN ls -lr ./bin
+
 # Create a minimal final image using Alpine
 FROM alpine:latest
 WORKDIR /app
