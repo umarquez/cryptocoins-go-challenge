@@ -1,5 +1,7 @@
 # Cryptocoins Go challenge
 
+  [![Test and Build](https://github.com/umarquez/cryptocoins-go-challenge/actions/workflows/test_and_build.yaml/badge.svg)](https://github.com/umarquez/cryptocoins-go-challenge/actions/workflows/test_and_build.yaml)
+
 ## Requirements:
 
 #### Layout
