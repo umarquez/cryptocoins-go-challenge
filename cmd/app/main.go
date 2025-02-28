@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 	"path"
@@ -38,8 +39,10 @@ func main() {
 	cryptoService := service.GetCryptoService()
 	cryptoUseCase := usecase.NewCryptoUseCase(cryptoService, cryptoRepo)
 
+	log.Printf("Server starting at http://localhost:8080")
 	err = http.ListenAndServe(":8080", controller.NewRouter(cryptoUseCase))
 	if err != nil {
 		panic(err)
 	}
+	log.Printf("Server stopped")
 }
