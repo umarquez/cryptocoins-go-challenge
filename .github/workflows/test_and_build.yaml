@@ -1,0 +1,26 @@
+name: Building test
+on: [push, pull_request]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+
+      - name: Setup go
+        run: |
+            sudo apt-get install -y golang-go
+            go version
+            go env
+            go get -u github.com/golang/dep/cmd/dep
+            go get -u github.com/golang/lint/golint
+            go get -u github.com/golang/protobuf/protoc-gen-go
+            go get -u github.com/golang/protobuf/proto
+
+      - name: test
+        run: make test
+
+      - name: build
+        run: make build

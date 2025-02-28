@@ -9,17 +9,18 @@ setup:
 
 all: build
 
-generate:
+generate: clean
 	go generate ./...
 	swag init -d cmd/app/ -o doc/
 
-build: generate test
+build: generate
 	mkdir -p $(BUILD_DIR)
 	go build -o $(BUILD_DIR)/$(APP_NAME) cmd/app/main.go
 
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f ./doc
+	rm -rf ./doc
+	rm -rf ./data
 
 test:
 	go test -v ./...
