@@ -14,11 +14,11 @@ FROM alpine:latest
 WORKDIR /app
 
 # Copy the binary from the builder stage
-COPY --from=builder . .
+COPY --from=builder ./app ./app
 
 # list the directory tree
-RUN ls -lr .
+RUN ls -lr ./app/
 
 # Ensure the binary is executable
-RUN chmod +x /app/bin/app
+RUN chmod +x ./app/bin/app
 ENTRYPOINT ["/app/bin/app"]
