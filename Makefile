@@ -9,7 +9,7 @@ setup:
 
 all: build
 
-generate: clean
+generate: clean setup
 	go generate ./...
 	swag init -d cmd/app/ -o doc/
 
