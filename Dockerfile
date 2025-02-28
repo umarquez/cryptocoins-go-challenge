@@ -20,8 +20,8 @@ COPY --from=builder ./app ./app
 RUN chmod +x ./app/bin/app
 
 # list the bin directory
-RUN ls -lr ./app/bin/
-RUN cd ./app/bin/
+RUN ls -lr bin/
+RUN cd bin/
 RUN pwd
 
 # Run the application
