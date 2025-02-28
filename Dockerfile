@@ -16,11 +16,13 @@ WORKDIR /app
 # Copy the binary from the builder stage
 COPY --from=builder ./app ./app
 
-# list the directory tree
-RUN ls -lr ./app/bin/
-
 # Ensure the binary is executable
 RUN chmod +x ./app/bin/app
 
+# list the bin directory
+RUN ls -lr ./app/bin/
+RUN cd /app/bin/
+RUN pwd
+
 # Run the application
-CMD ["./app/bin/app"]
+CMD ["app/bin/app"]
