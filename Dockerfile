@@ -14,7 +14,7 @@ FROM alpine:latest
 WORKDIR /app
 
 # Copy the binary from the builder stage
-COPY --from=builder /app/* ./
+COPY --from=builder /app /app
 
 # list the directory tree
 RUN ls -lr bin
