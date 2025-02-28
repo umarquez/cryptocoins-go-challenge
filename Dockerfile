@@ -21,4 +21,4 @@ RUN ls -lr ./app/bin/
 
 # Ensure the binary is executable
 RUN chmod +x ./app/bin/app
-ENTRYPOINT ["/app/bin/app"]
+ENTRYPOINT ["./app/bin/app"]
