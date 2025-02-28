@@ -16,6 +16,9 @@ WORKDIR /app
 # Copy the binary from the builder stage
 COPY --from=builder /app/bin/app ./bin/app
 
+# list the directory tree
+RUN ls -lr ./bin
+
 # Ensure the binary is executable
 RUN chmod +x ./bin/app
 ENTRYPOINT ["./bin/app"]
