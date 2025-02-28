@@ -11,7 +11,7 @@ all: build
 
 generate: clean setup
 	go generate ./...
-	swag init -d cmd/app/ -o doc/
+	swag init -g main.go -d cmd/app -o docs/
 
 build: generate
 	mkdir -p $(BUILD_DIR)
